@@ -1,14 +1,16 @@
-
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import About from './components/About'
+import Home from './components/Home'
 
 function App() {
-
-  return (
-    <div className='w-screen h-screen bg-zinc-900' >
-      <div className='text-2xl text-white'>
-        <p>hello world!</p>
-      </div> 
-    </div>
-  )
+	return (
+		<BrowserRouter>
+			<Routes>
+				<Route path='/Home' element={<Home />} />
+				<Route path='/about' element={<About />} />
+			</Routes>
+		</BrowserRouter>
+	)
 }
 
 export default App
