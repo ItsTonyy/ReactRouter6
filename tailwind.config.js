@@ -5,7 +5,15 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      backgroundImage: {
+        'Rio-de-Janeiro': "url('./images/rio-de-janeiro.jpg')",
+      },
+    },
+    
+    fontFamily: {
+      'Inter': 'Inter, sans-serif'  
+    },
   },
   plugins: [],
 }
