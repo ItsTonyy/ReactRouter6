@@ -19,7 +19,7 @@ export default function Home() {
 						</div>
 
 						<div className='flex items-center justify-center mt-80'>
-							<button className='bg-orange-400 py-3 px-40 rounded-xl'>
+							<button className='bg-orange-400 py-3 px-40 rounded-xl hover:bg-orange-500'>
 								Find your van
 							</button>
 						</div>

@@ -8,8 +8,9 @@ export default function Header() {
         <h1 className='text-3xl font-black'>#VANLIFE</h1>
       </div>
       <div className=''>
-        <Link to='/About' className='text-lg font-medium'>About</Link>
-        <Link to='/Vans' className='ml-14 text-lg font-medium'>Vans</Link>
+       <Link to='/Home' className='text-lg font-medium hover:underline mr-14'>Home</Link>
+        <Link to='/About' className='text-lg font-medium hover:underline'>About</Link>
+        <Link to='/Vans' className='ml-14 text-lg font-medium hover:underline'>Vans</Link>
       </div>
     </div>
     </>
