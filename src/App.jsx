@@ -1,7 +1,7 @@
 import { BrowserRouter, Route, Routes 	} from 'react-router-dom'
-import About from './routes/About'
-import Home from './routes/Home'
-import Vans from './routes/Vans'
+import About from './pages/About'
+import Home from './pages/Home'
+import Vans from './pages/Vans'
 
 function App() {
 	return (
