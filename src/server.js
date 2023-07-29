@@ -66,6 +66,26 @@ createServer({
 				'https://assets.scrimba.com/advanced-react/react-router/green-wonder.png',
 			type: 'rugged',
 		})
+		server.create('van', {
+			id: '7',
+			name: 'Red-Velvet',
+			price: 90,
+			description:
+				"With this van, you can take your travel life to the next level. The Green Wonder is a sustainable vehicle that's perfect for people who are looking for a stylish, eco-friendly mode of transport that can go anywhere.",
+			imageUrl:
+				'/src/images/Red-Velvet2.jpg',
+			type: 'simple',
+		})
+		server.create('van', {
+			id: '8',
+			name: 'Bee Boy',
+			price: 120,
+			description:
+				"With this van, you can take your travel life to the next level. The Green Wonder is a sustainable vehicle that's perfect for people who are looking for a stylish, eco-friendly mode of transport that can go anywhere.",
+			imageUrl:
+				'/src/images/Bee-Boy.jpeg',
+			type: 'rugged',
+		})
 	},
 
 	routes() {
