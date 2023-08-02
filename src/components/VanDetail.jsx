@@ -24,7 +24,7 @@ export default function VanDetail() {
 				<Header />
         <div className='mt-10'>
 					<Link to={'/vans'}>
-					<p className='text-zinc-900/60 text-lg font-medium flex flex-row gap-1 items-center ml-3 hover:underline hover:text-black'><ArrowLeft size={24}/> Back to all vans</p>
+					<p className='text-zinc-900/60 text-lg font-medium flex flex-row gap-1 items-center ml-3 bg-orange-300/60 p-2 rounded-lg w-fit hover:text-black'><ArrowLeft size={24}/> Back to all vans</p>
 					</Link>
           
 
@@ -47,7 +47,7 @@ export default function VanDetail() {
 							<button className='bg-orange-400 not-italic font-medium
 								rounded-md text-orange-100 py-2 px-12 mb-12'>Rent this van</button>
             </div>
-          ) : <h2>is loading...</h2>}
+          ) : <h2 className='font-medium text-xl m-10'>is loading...</h2>}
         </div>
 				<Footer />
 			</div>
