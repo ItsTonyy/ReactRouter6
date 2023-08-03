@@ -1,6 +1,4 @@
 import { useEffect, useState } from 'react'
-import Header from '../components/Header'
-import Footer from '../components/Footer'
 import { Link } from 'react-router-dom'
 
 
@@ -37,16 +35,14 @@ export default function Vans() {
 		<>
 			<body className='overflow-x-hidden'>
 				<div className='w-screen h-full bg-orange-50'>
-					<Header />
 					<div className='p-14'>
-						<h1 className='text-3xl text-zinc-800 font-bold mb-10'>
+						<h1 className='text-3xl text-zinc-950 font-bold mb-10'>
 							Explore our van options
 						</h1>
 						<div className='grid grid-rows-2 grid-cols-4 gap-y-8 '>
 							{vanElements}
 						</div>
 					</div>
-					<Footer />
 				</div>
 			</body>
 		</>

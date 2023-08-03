@@ -1,8 +1,6 @@
 import { ArrowLeft } from 'lucide-react'
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import Footer from './Footer'
-import Header from './Header'
 import { Link } from 'react-router-dom'
 
 export default function VanDetail() {
@@ -20,17 +18,16 @@ export default function VanDetail() {
 
 
 	return (
-			<div className='w-full h-max bg-orange-100'>
-				<Header />
-        <div className='mt-10'>
+			<div className='w-full h-max bg-orange-50'>
+        <div className='pt-10'>
 					<Link to={'/vans'}>
-					<p className='text-zinc-900/60 text-lg font-medium flex flex-row gap-1 items-center ml-3 bg-orange-300/60 p-2 rounded-lg w-fit hover:text-black'><ArrowLeft size={24}/> Back to all vans</p>
+					<p className='text-zinc-900/60 text-lg font-medium flex flex-row gap-1 items-center ml-3 bg-orange-300/80 p-2 rounded-lg w-fit hover:text-black'><ArrowLeft size={24}/> Back to all vans</p>
 					</Link>
           
 
           {van ? (
-            <div className='flex justify-center items-center flex-col mt-10 w-[35rem] m-auto'>
-							<h1 className='text-3xl font-semibold mb-6'>{van.name}</h1>
+            <div className='flex justify-center items-center flex-col mt-10 w-[35rem] m-auto select-none'>
+							<h1 className='text-4xl font-light mb-6'>{van.name}</h1>
               <img src={van.imageUrl} alt="imagem" width={600} className='rounded-xl mb-8'/>
 							
 							<div className='flex flex-row justify-between w-full h-fit mb-6'>
@@ -43,13 +40,13 @@ export default function VanDetail() {
 								</p>
 							</div>
 							
-							<p className='text-lg font-light mb-6'>{van.description}</p>
+							<p className='text-xl font-light mb-6'>{van.description}</p>
 							<button className='bg-orange-400 not-italic font-medium
-								rounded-md text-orange-100 py-2 px-12 mb-12'>Rent this van</button>
+								rounded-md text-orange-100 py-2 px-20 mb-12 hover:bg-orange-500'>Rent this van</button>
             </div>
+
           ) : <h2 className='font-medium text-xl m-10'>is loading...</h2>}
         </div>
-				<Footer />
 			</div>
 	)
 }

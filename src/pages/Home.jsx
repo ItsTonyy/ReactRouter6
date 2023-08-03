@@ -1,11 +1,7 @@
-import Footer from '../components/Footer'
-import Header from '../components/Header'
-
 export default function Home() {
 	return (
 		<>
 			<body className='overflow-x-hidden'>
-				<Header />
 				<div className='w-screen h-screen bg-white font-Inter bg-Rio-de-Janeiro bg-no-repeat bg-cover flex  text-white justify-center'>
 					<div className='mt-20 p-12'>
 						<h1 className='text-5xl font-bold'>
@@ -25,7 +21,6 @@ export default function Home() {
 						</div>
 					</div>
 				</div>
-				<Footer />
 			</body>
 		</>
 	)

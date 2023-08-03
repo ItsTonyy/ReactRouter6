@@ -1,10 +1,6 @@
-import Footer from '../components/Footer'
-import Header from '../components/Header'
-
 export default function About () {
   return(
     <>
-      <Header/>
       <div className='w-1889 h-723'>
         <img src="./src/images/wallpaper3.jpg" alt="imagem" />
       </div>
@@ -26,8 +22,6 @@ export default function About () {
         </div>
       </div>
 
-     
-      <Footer/>
     </>
   )
 }
