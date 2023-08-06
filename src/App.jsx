@@ -22,12 +22,12 @@ function App() {
 				<Route element={<PageLayout />}> 
 					<Route path='/' element={<Home />} />
 					<Route path='About' element={<About />} />
+					
 					<Route path='Vans' element={<Vans/>}/>
-
 					<Route path='Vans/:id' element={<VanDetail/>}/>
 					
 					<Route path='host' element={<HostLayout />}> 
-						<Route path='host' element={<Dashboard />}/>
+						<Route index element={<Dashboard />}/>
 						<Route path='income' element={<Income />}/>
 						<Route path='reviews' element={<Reviews />}/>
 					</Route>

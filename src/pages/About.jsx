@@ -5,8 +5,8 @@ export default function About () {
         <img src="./src/images/wallpaper3.jpg" alt="imagem" />
       </div>
       <div className='w-full h-full text-black bg-orange-100 p-12 flex justify-center items-center flex-col'>
-        <h1 className='text-3xl font-bold mb-2'>Don&apos;t Squeeze In A Sedan</h1>
-        <h1 className='text-3xl font-bold'>When You Could Relax In A Van</h1>
+        <h1 className='text-3xl font-bold mb-2'>Don&apos;t Squeeze In a Sedan</h1>
+        <h1 className='text-3xl font-bold'>When You Could Relax In a Van</h1>
 
         <p className='text-xl font-light mt-4'>Our mission is to enliven your road trip with the perfect travel van rental. 
         </p>
