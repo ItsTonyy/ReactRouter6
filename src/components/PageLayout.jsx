@@ -1,5 +1,5 @@
 import { Outlet } from 'react-router-dom'
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 
 export default function PageLayout() {
 	return (
@@ -8,25 +8,31 @@ export default function PageLayout() {
 				<div>
 					<h1 className='text-3xl font-black'>#VANLIFE</h1>
 				</div>
-				<div className=''>
-					<Link
+				<div className='text-xl font-medium text-zinc-950/50'>
+					<NavLink
 						to='/'
-						className='text-xl text-zinc-900/80 font-medium hover:underline hover:text-black mr-14'
+						className='mr-10 [&.active]:text-black'
 					>
 						Home
-					</Link>
-					<Link
+					</NavLink>
+					<NavLink
 						to='/About'
-						className='text-xl text-zinc-900/80 font-medium hover:underline hover:text-zinc-950'
+						className='mr-10 [&.active]:text-black'
 					>
 						About
-					</Link>
-					<Link
+					</NavLink>
+					<NavLink
 						to='/Vans'
-						className='ml-14 text-xl text-zinc-900/80 font-medium hover:underline hover:text-zinc-950'
+						className='mr-10 [&.active]:text-black'
 					>
 						Vans
-					</Link>
+					</NavLink>
+					<NavLink
+						to='/Host'
+						className='mr-10 [&.active]:text-black'
+					>
+						Host
+					</NavLink>
 				</div>
 			</header>
 
