@@ -39,7 +39,6 @@ function App() {
 				</Route>
 			</Routes>
 		</BrowserRouter>
-		// <Route path='vans/:id' element={<HostVansId />}/>
 	)
 }
 
