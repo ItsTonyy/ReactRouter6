@@ -1,9 +1,9 @@
 import { useEffect } from "react"
-import { useState } from "react"
+//import { useState } from "react"
 import { useParams } from "react-router-dom"
 
 export default function HostVansId() {
-  const [currentVan, setCurrentVan] = useState(null)
+  //const [currentVan, setCurrentVan] = useState(null)
   const { id } = useParams()
 
   useEffect(() => {
@@ -14,7 +14,7 @@ export default function HostVansId() {
       //SetCurrentVan(data.vans);
     }
     vansFetch()
-  }, [])
+  }, [id])
 
   return <h1>Host Vans Id</h1>
 }
