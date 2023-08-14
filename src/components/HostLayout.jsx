@@ -13,21 +13,21 @@ export default function HostLayout() {
         </NavLink>
 
         <NavLink
-          to={"/host/income"}
+          to={"income"}
           className={({ isActive }) => (isActive ? "text-black" : null)}
         >
           <span className='hover:text-black'>Income</span>
         </NavLink>
 
         <NavLink
-          to={"/host/reviews"}
+          to={"reviews"}
           className={({ isActive }) => (isActive ? "text-black" : null)}
         >
           <span className='hover:text-black'>Reviews</span>
         </NavLink>
 
         <NavLink
-          to={"/host/vans"}
+          to={"vans"}
           className={({ isActive }) => (isActive ? "text-black" : null)}
         >
           <span className='hover:text-black'>Vans</span>

@@ -4,7 +4,7 @@ import About from './pages/About'
 import Home from './pages/Home'
 import Vans from './pages/Vans'
 
-import VanDetail from './components/VanDetail'
+import VanDetail from './pages/VanDetail'
 
 import Dashboard from './pages/host/Dashboard'
 import Income from './pages/host/Income'

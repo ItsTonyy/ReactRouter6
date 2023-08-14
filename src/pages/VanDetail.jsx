@@ -40,7 +40,7 @@ export default function VanDetail() {
 								</p>
 							</div>
 							
-							<p className='text-xl font-light mb-6'>{van.description}</p>
+							<p className='text-xl font-extralight mb-6'>{van.description}</p>
 							<button className='bg-orange-400 not-italic font-medium
 								rounded-md text-orange-100 py-2 px-20 mb-12 hover:bg-orange-500'>Rent this van</button>
             </div>
