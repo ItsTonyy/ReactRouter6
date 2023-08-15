@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"
-import { useParams } from "react-router-dom"
+import { useParams, Outlet } from "react-router-dom"
 import { Link } from "react-router-dom"
 import { ArrowLeft } from "lucide-react"
 
@@ -50,11 +50,13 @@ export default function HostVansId() {
                 </p>
               </div>
             </div>
+            <Outlet/>
           </div>
         ) : (
           <h2 className='font-medium text-xl m-10'>is loading...</h2>
         )}
       </div>
+      
     </div>
   )
 }
