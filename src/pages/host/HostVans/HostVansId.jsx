@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
 import { useParams, Outlet } from "react-router-dom"
-import { Link } from "react-router-dom"
+import { NavLink, Link } from "react-router-dom"
 import { ArrowLeft } from "lucide-react"
 
 export default function HostVansId() {
@@ -26,37 +26,63 @@ export default function HostVansId() {
         </Link>
 
         {currentVan ? (
-          <div className='flex items-center flex-row mt-10 w-[40rem] m-auto select-none bg-white p-10 mb-20 rounded-xl'>
-            <img
-              src={currentVan.imageUrl}
-              alt='imagem'
-              width={250}
-              className='rounded-xl mb-8'
-            />
-            <div className='flex flex-col ml-10 gap-3'>
-              <i
-                className='bg-teal-700 not-italic font-medium
-								rounded-md text-orange-100 py-2 px-5 flex justify-center w-1/2'
-              >
-                {currentVan.type}
-              </i>
+          <div className='flex flex-col mt-10 w-[40rem] m-auto select-none bg-white p-10 mb-20 rounded-xl'>
+            <div className='flex items-center flex-row '>
+              <img
+                src={currentVan.imageUrl}
+                alt='imagem'
+                width={250}
+                className='rounded-xl mb-8'
+              />
+              <div className='flex flex-col ml-10 gap-3'>
+                <i
+                  className='bg-teal-700 not-italic font-medium
+                  rounded-md text-orange-100 py-2 px-5 flex justify-center w-1/2'
+                >
+                  {currentVan.type}
+                </i>
 
-              <h1 className='text-4xl font-bold mb-6'>{currentVan.name}</h1>
+                <h1 className='text-4xl font-bold mb-6'>{currentVan.name}</h1>
 
-              <div className='flex flex-row justify-center w-fit h-fit -mt-5 text-xl'>
-                <p className='font-bold flex flex-row'>
-                  ${currentVan.price}
-                  <span className='font-normal'>/day</span>
-                </p>
+                <div className='flex flex-row justify-center w-fit h-fit -mt-5 text-xl'>
+                  <p className='font-bold flex flex-row'>
+                    ${currentVan.price}
+                    <span className='font-normal'>/day</span>
+                  </p>
+                </div>
               </div>
             </div>
-            <Outlet/>
+
+            <div className='flex flex-row gap-5 text-zinc-900/50 text-xl mb-6 font-medium'>
+              <NavLink
+                to='.'
+                end
+                className={({ isActive }) => (isActive ? "text-black" : null)}
+              >
+                Details
+              </NavLink>
+              <NavLink
+                to='pricing'
+                className={({ isActive }) => (isActive ? "text-black" : null)}
+              >
+                Pricing
+              </NavLink>
+              <NavLink
+                to='photos'
+                className={({ isActive }) => (isActive ? "text-black" : null)}
+              >
+                Photos
+              </NavLink>
+            </div>
+
+            <Outlet
+              context={{currentVan}}
+            />
           </div>
         ) : (
           <h2 className='font-medium text-xl m-10'>is loading...</h2>
         )}
       </div>
-      
     </div>
   )
 }
