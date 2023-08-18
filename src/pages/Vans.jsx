@@ -1,8 +1,14 @@
 import { useEffect, useState } from "react";
+import { useSearchParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 
 export default function Vans() {
   const [vans, setVans] = useState([]);
+  const [searchParams, setSearchParams] = useSearchParams()
+ 
+  const typeFilter = searchParams.get('type')
+
+  
 
   useEffect(() => {
     const vansFetch = async () => {
@@ -31,8 +37,8 @@ export default function Vans() {
         </div>
       </Link>
       <i
-        className='bg-teal-700 h-8 not-italic font-medium rounded-md
-			text-orange-100 py-2 px-5'
+        className={`${van.type === 'Rugged' ? 'bg-green-800' : 'bg-orange-500'} h-8 not-italic font-medium rounded-md
+			text-orange-100 py-2 px-5`}
       >
         {van.type}
       </i>
@@ -40,7 +46,6 @@ export default function Vans() {
   ));
 
   return (
-    <>
       <body className='overflow-x-hidden'>
         <div className='w-screen h-full bg-orange-50'>
           <div className='p-14'>
@@ -53,6 +58,5 @@ export default function Vans() {
           </div>
         </div>
       </body>
-    </>
   );
 }
