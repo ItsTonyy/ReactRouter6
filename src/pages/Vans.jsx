@@ -1,14 +1,16 @@
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 export default function Vans() {
   const [vans, setVans] = useState([]);
+
   const [searchParams, setSearchParams] = useSearchParams()
- 
+
   const typeFilter = searchParams.get('type')
 
-  
+  const VansFiltered = typeFilter ? vans.filter(van => van.type === typeFilter)
+  : vans
 
   useEffect(() => {
     const vansFetch = async () => {
@@ -19,7 +21,7 @@ export default function Vans() {
     vansFetch();
   }, []);
 
-  const vanElements = vans.map((van) => (
+  const vanElements = VansFiltered.map((van) => (
     <div key={van.id} className='text-black'>
       <Link to={`/vans/${van.id}`}>
         <img
@@ -37,7 +39,7 @@ export default function Vans() {
         </div>
       </Link>
       <i
-        className={`${van.type === 'Rugged' ? 'bg-green-800' : 'bg-orange-500'} h-8 not-italic font-medium rounded-md
+        className={`${van.type === 'Rugged' ? 'bg-teal-900' : van.type === 'Simple' ? 'bg-orange-500/80' : van.type === 'Luxury' ? 'bg-zinc-950' : 'bg-gray-500'} h-8 not-italic font-medium rounded-md
 			text-orange-100 py-2 px-5`}
       >
         {van.type}
@@ -50,7 +52,7 @@ export default function Vans() {
         <div className='w-screen h-full bg-orange-50'>
           <div className='p-14'>
             <h1 className='text-3xl text-zinc-950 font-bold mb-10'>
-              Explore our van options
+              Explore Our Van Options
             </h1>
             <div className='grid grid-rows-2 grid-cols-4 gap-y-8 '>
               {vanElements}
