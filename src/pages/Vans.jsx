@@ -51,10 +51,37 @@ export default function Vans() {
       <body className='overflow-x-hidden'>
         <div className='w-screen h-full bg-orange-50'>
           <div className='p-14'>
-            <h1 className='text-3xl text-zinc-950 font-bold mb-10'>
+            <h1 className='text-3xl text-zinc-950 font-bold mb-8'>
               Explore Our Van Options
             </h1>
-            <div className='grid grid-rows-2 grid-cols-4 gap-y-8 '>
+            <div className="mb-10">
+
+              <button
+                onClick={() => setSearchParams({type: 'Simple'})}
+                className='bg-orange-200/70 px-4 py-2 rounded-lg mr-5 text-zinc-950/80 font-medium'>
+                Simple
+              </button>
+
+              <button 
+                onClick={() => setSearchParams({type: 'Luxury'})}
+                className='bg-orange-200/70 px-4 py-2 rounded-lg mr-5 text-zinc-950/80 font-medium'>
+                Luxury
+              </button>
+
+              <button 
+                onClick={() => setSearchParams({type: 'Rugged'})}
+                className='bg-orange-200/70 px-4 py-2 rounded-lg mr-5 text-zinc-950/80 font-medium'>
+                Rugged
+              </button>
+
+              <button 
+                onClick={() => setSearchParams({})}              
+                className='underline text-zinc-950/70'>
+                Clear Filters
+              </button>
+              
+            </div>
+            <div className='grid grid-rows-2 grid-cols-4 gap-y-14 '>
               {vanElements}
             </div>
           </div>
