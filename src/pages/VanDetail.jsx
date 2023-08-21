@@ -45,7 +45,7 @@ export default function VanDetail() {
 								rounded-md text-orange-100 py-2 px-20 mb-12 hover:bg-orange-500'>Rent this van</button>
             </div>
 
-          ) : <h2 className='font-medium text-xl m-10'>is loading...</h2>}
+          ) : <h2 className='font-medium text-2xl m-10'>Loading...</h2>}
         </div>
 			</div>
 	)

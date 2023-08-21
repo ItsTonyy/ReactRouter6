@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
-import { Link, NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export default function Vans() {
   const [vans, setVans] = useState([]);
@@ -76,7 +76,7 @@ export default function Vans() {
 
               <button 
                 onClick={() => setSearchParams({})}              
-                className='underline text-zinc-950/70'>
+                className={`text-zinc-950/90 text-lg  ${typeFilter ? null : 'hidden'}`}>
                 Clear Filters
               </button>
               
