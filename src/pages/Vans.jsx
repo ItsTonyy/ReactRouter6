@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
-import { useSearchParams } from "react-router-dom"
-import { Link } from "react-router-dom"
+import { useSearchParams, Link } from "react-router-dom"
+
 
 export default function Vans() {
   const [vans, setVans] = useState([])
@@ -24,7 +24,7 @@ export default function Vans() {
 
   const vanElements = VansFiltered.map((van) => (
     <div key={van.id} className='text-black'>
-      <Link to={`/vans/${van.id}`}>
+      <Link to={van.id} state={{search: `?${searchParams.toString()}` }}>
         <img
           src={van.imageUrl}
           alt='imagem'
@@ -63,14 +63,14 @@ export default function Vans() {
           <h1 className='text-3xl text-zinc-950 font-bold mb-8'>
             Explore Our Van Options
           </h1>
-          <div className='mb-10 transition'>
+          <div className='mb-10'>
             <button
               onClick={() => setSearchParams({ type: "Simple" })}
               className={`${
                 typeFilter === "Simple"
                   ? "bg-orange-500/80"
                   : "bg-orange-200/70" 
-                } hover:bg-orange-500/80 px-4 py-2 rounded-lg mr-5 text-zinc-950/80 font-medium`}
+                } focus:text-white hover:bg-orange-500/80 px-4 py-2 rounded-lg mr-5 text-zinc-950/80 font-medium`}
             >
               Simple
             </button>
@@ -93,14 +93,15 @@ export default function Vans() {
                 typeFilter === "Rugged" 
                 ? "bg-teal-900" 
                 : "bg-orange-200/70"}
-                 px-4 py-2 rounded-lg mr-5 text-zinc-950/80 font-medium`}
+                focus:text-white px-4 py-2 rounded-lg mr-5 text-zinc-950/80 font-medium`}
             >
               Rugged
             </button>
 
             <button
               onClick={() => setSearchParams({})}
-              className={`text-zinc-950/90 text-lg  ${
+              className={`text-zinc-950/90 text-lg  
+              ${
                 typeFilter ? null : "hidden"
               }`}
             >

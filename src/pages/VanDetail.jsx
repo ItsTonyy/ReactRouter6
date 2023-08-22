@@ -1,11 +1,14 @@
 import { ArrowLeft } from 'lucide-react'
 import { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
-import { Link } from 'react-router-dom'
+import { useParams, Link, useLocation } from 'react-router-dom'
+
 
 export default function VanDetail() {
 	const params = useParams()
 	const [van, setVan] = useState(null)
+
+	const location = useLocation()
+	const locationStateSearch = location.state?.search || ''
 
 	useEffect(() => {
 		const fetchId = async () => {
@@ -20,7 +23,9 @@ export default function VanDetail() {
 	return (
 			<div className='w-full h-max bg-orange-50'>
         <div className='pt-10'>
-					<Link to={'/vans'}>
+					<Link to={`/vans${locationStateSearch}`}
+					>
+					
 					<p className='text-zinc-900/60 text-lg font-medium flex flex-row gap-1 items-center ml-3 bg-orange-300/80 p-2 rounded-lg w-fit hover:text-black'><ArrowLeft size={24}/> Back to all vans</p>
 					</Link>
           
