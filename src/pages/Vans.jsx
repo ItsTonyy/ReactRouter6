@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react"
 import { useSearchParams, Link } from "react-router-dom"
 
-
 export default function Vans() {
   const [vans, setVans] = useState([])
 
@@ -24,7 +23,12 @@ export default function Vans() {
 
   const vanElements = VansFiltered.map((van) => (
     <div key={van.id} className='text-black'>
-      <Link to={van.id} state={{search: `?${searchParams.toString()}` }}>
+      <Link to={van.id} state={
+        { 
+          search: `?${searchParams.toString()}`,
+          type: `${typeFilter === null ? 'all' : typeFilter}`      
+        }
+        }>
         <img
           src={van.imageUrl}
           alt='imagem'
@@ -48,9 +52,7 @@ export default function Vans() {
             : van.type === "Luxury"
             ? "bg-zinc-950"
             : "bg-gray-500"
-        } h-8 not-italic font-medium rounded-md
-			text-orange-100 py-2 px-5`}
-      >
+        } h-8 not-italic font-medium rounded-md text-orange-100 py-2 px-5`}>
         {van.type}
       </i>
     </div>
