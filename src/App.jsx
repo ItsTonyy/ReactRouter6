@@ -19,6 +19,8 @@ import HostVansDetails from './pages/host/HostVans/HostVansDetails'
 import HostVansPhotos from './pages/host/HostVans/HostVansPhotos'
 import HostVansPricing from './pages/host/HostVans/HostVansPricing'
 
+import ErrorPage from './pages/ErrorPage'
+
 import './server'
 
 
@@ -44,6 +46,7 @@ function App() {
 							<Route path='photos' element={<HostVansPhotos />}/>
 						</Route>
 					</Route>
+					<Route path='*' element={<ErrorPage/>}/>
 				</Route>
 			</Routes>
 		</BrowserRouter>

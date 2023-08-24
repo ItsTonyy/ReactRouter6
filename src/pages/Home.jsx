@@ -7,15 +7,15 @@ export default function Home() {
 						<h1 className='text-5xl font-bold'>
 							You Got The Travel Plans, We Got The Travel Vans
 						</h1>
-						<div className='mt-10 text-2xl flex flex-col items-center'>
-							<p className='mb-10'>
+						<div className='mt-10 text-2xl flex flex-col items-center  font-light'>
+							<p className='mb-3 font-light'>
 								Add adventure to your life by joining the #VanLife movement.
 							</p>
 							<p>Rent the perfect van to make your perfect road trip</p>
 						</div>
 
 						<div className='flex items-center justify-center mt-80'>
-							<button className='bg-orange-400 py-3 px-40 rounded-xl hover:bg-orange-500'>
+							<button className='bg-orange-400 py-3 px-40 rounded-xl hover:bg-orange-500 font-medium text-xl'>
 								Find your van
 							</button>
 						</div>
