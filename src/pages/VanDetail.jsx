@@ -64,7 +64,7 @@ export default function VanDetail() {
             </button>
           </div>
         ) : (
-          <h2 className='font-medium text-2xl m-10'>Loading...</h2>
+          <h2 className='font-medium text-2xl p-12'>Loading...</h2>
         )}
       </div>
     </div>

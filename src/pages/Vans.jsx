@@ -1,24 +1,29 @@
-import { useEffect, useState } from "react"
+import {useState, useEffect } from "react"
 import { useSearchParams, Link } from "react-router-dom"
+import GetVans from "../GetVans"
 
 export default function Vans() {
   const [vans, setVans] = useState([])
+  const [loading, setLoading] = useState(false)
 
   const [searchParams, setSearchParams] = useSearchParams()
 
   const typeFilter = searchParams.get("type")
 
   const VansFiltered = typeFilter
-    ? vans.filter((van) => van.type === typeFilter)
-    : vans
+  ? vans.filter((van) => van.type === typeFilter)
+  : vans
 
   useEffect(() => {
-    const vansFetch = async () => {
-      const response = await fetch("/api/vans")
-      const data = await response.json()
-      setVans(data.vans)
+    const loadVans = async () => {
+      setLoading(true)
+
+      const data = await GetVans()
+      setVans(data)
+
+      setLoading(false)
     }
-    vansFetch()
+    loadVans()
   }, [])
 
   const vanElements = VansFiltered.map((van) => (
@@ -57,6 +62,12 @@ export default function Vans() {
       </i>
     </div>
   ))
+
+  if(loading) {
+    return(
+      <h2 className='font-medium text-2xl p-12 bg-orange-100'>Loading...</h2>
+    )
+  }
 
   return (
     <body className='overflow-x-hidden'>

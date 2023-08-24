@@ -38,7 +38,7 @@ export default function HostVans() {
     <div className='pl-14 pt-2 bg-orange-100 h-full'>
       <section>
         <h1 className='text-3xl font-bold'>Your Listed Vans</h1>
-        {hostVans.length > 0 ? hostVansUi : <div>Loading...</div>}
+        {hostVans.length > 0 ? hostVansUi : <div className="font-medium text-2xl py-12">Loading...</div>}
       </section>
     </div>
   )
