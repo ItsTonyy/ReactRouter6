@@ -1,32 +1,49 @@
 import {useState, useEffect } from "react"
 import { useSearchParams, Link } from "react-router-dom"
-import GetVans from "../GetVans"
+import getVans from "../GetVans"
 
 export default function Vans() {
   const [vans, setVans] = useState([])
+
   const [loading, setLoading] = useState(false)
+  const [error, setError] = useState(null)
 
   const [searchParams, setSearchParams] = useSearchParams()
 
   const typeFilter = searchParams.get("type")
 
   const VansFiltered = typeFilter
-  ? vans.filter((van) => van.type === typeFilter)
+  ? vans?.filter((van) => van.type === typeFilter)
   : vans
 
   useEffect(() => {
-    const loadVans = async () => {
-      setLoading(true)
-
-      const data = await GetVans()
-      setVans(data)
-
-      setLoading(false)
+    async function loadVans() {
+        setLoading(true)
+        try {
+            const data = await getVans()
+            setVans(data)
+        } catch (err) {
+            setError(err)
+            console.log('ERROR: cannot load vans.')
+            console.log(err)
+        } finally {
+            setLoading(false)
+        }
     }
     loadVans()
-  }, [])
+}, [])
 
-  const vanElements = VansFiltered.map((van) => (
+  if(loading) {
+    return(
+      <h2 className='font-medium text-2xl p-12 bg-orange-100'>Loading...</h2>
+    )
+  }
+
+  if(error) {
+    return <h1 className="p-12 bg-orange-100 text-xl font-medium">There was an error: {error.message}</h1>
+  }
+
+  const vanElements = VansFiltered?.map((van) => (
     <div key={van.id} className='text-black'>
       <Link to={van.id} state={
         { 
@@ -62,12 +79,6 @@ export default function Vans() {
       </i>
     </div>
   ))
-
-  if(loading) {
-    return(
-      <h2 className='font-medium text-2xl p-12 bg-orange-100'>Loading...</h2>
-    )
-  }
 
   return (
     <body className='overflow-x-hidden'>
