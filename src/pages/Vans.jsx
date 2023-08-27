@@ -2,6 +2,10 @@ import {useState, useEffect } from "react"
 import { useSearchParams, Link } from "react-router-dom"
 import getVans from "../GetVans"
 
+export function loader() {
+  return 'Vans data goes here.'
+}
+
 export default function Vans() {
   const [vans, setVans] = useState([])
 

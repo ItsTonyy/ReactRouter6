@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom"
+
 export default function Home() {
 	return (
 		<>
@@ -15,9 +17,11 @@ export default function Home() {
 						</div>
 
 						<div className='flex items-center justify-center mt-80'>
-							<button className='bg-orange-400 py-3 px-40 rounded-xl hover:bg-orange-500 font-medium text-xl'>
-								Find your van
-							</button>
+							<Link to='/vans'>
+								<button className='bg-orange-400 py-3 px-40 rounded-xl hover:bg-orange-500 font-medium text-xl'>
+									Find your van
+								</button>
+							</Link>
 						</div>
 					</div>
 				</div>
