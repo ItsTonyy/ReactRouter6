@@ -1,53 +1,17 @@
-import {useState, useEffect } from "react"
-import { useSearchParams, Link } from "react-router-dom"
-import getVans from "../GetVans"
-
-export function loader() {
-  return 'Vans data goes here.'
-}
+import { useSearchParams, Link, useLoaderData } from "react-router-dom"
 
 export default function Vans() {
-  const [vans, setVans] = useState([])
-
-  const [loading, setLoading] = useState(false)
-  const [error, setError] = useState(null)
-
   const [searchParams, setSearchParams] = useSearchParams()
-
   const typeFilter = searchParams.get("type")
 
+  const vans = useLoaderData()
+
+
   const VansFiltered = typeFilter
-  ? vans?.filter((van) => van.type === typeFilter)
+  ? vans.filter((van) => van.type === typeFilter)
   : vans
 
-  useEffect(() => {
-    async function loadVans() {
-        setLoading(true)
-        try {
-            const data = await getVans()
-            setVans(data)
-        } catch (err) {
-            setError(err)
-            console.log('ERROR: cannot load vans.')
-            console.log(err)
-        } finally {
-            setLoading(false)
-        }
-    }
-    loadVans()
-}, [])
-
-  if(loading) {
-    return(
-      <h2 className='font-medium text-2xl p-12 bg-orange-100'>Loading...</h2>
-    )
-  }
-
-  if(error) {
-    return <h1 className="p-12 bg-orange-100 text-xl font-medium">There was an error: {error.message}</h1>
-  }
-
-  const vanElements = VansFiltered?.map((van) => (
+  const vanElements = VansFiltered.map((van) => (
     <div key={van.id} className='text-black'>
       <Link to={van.id} state={
         { 
