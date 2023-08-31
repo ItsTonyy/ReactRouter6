@@ -21,9 +21,9 @@ import About from "./pages/About"
 import Home from "./pages/Home"
 
 // vans components
-import Vans from "./pages/Vans"
+import Vans, {loader as vansLoader} from "./pages/Vans"
 import VanDetail from "./pages/VanDetail"
-import { loader as vansLoader } from "./LoaderVans"
+
 
 // mid level of host
 import Dashboard from "./pages/host/Dashboard"
@@ -46,7 +46,12 @@ function App() {
         <Route path='/' element={<Home />} />
         <Route path='About' element={<About />} />
 
-        <Route path='Vans' element={<Vans />} loader={vansLoader} errorElement={<ErrorPageTwo />} />
+        <Route 
+        path='Vans' 
+        element={<Vans />}
+        loader={vansLoader} 
+        errorElement={<ErrorPageTwo />} 
+        />
         <Route path='Vans/:id' element={<VanDetail />} />
 
         <Route path='host' element={<HostLayout />}>

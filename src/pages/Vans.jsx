@@ -1,4 +1,9 @@
 import { useSearchParams, Link, useLoaderData } from "react-router-dom"
+import getVans from "../GetVans"
+
+export function loader() {
+  return getVans()
+}
 
 export default function Vans() {
   const [searchParams, setSearchParams] = useSearchParams()
@@ -11,7 +16,7 @@ export default function Vans() {
   ? vans.filter((van) => van.type === typeFilter)
   : vans
 
-  const vanElements = VansFiltered.map((van) => (
+  const vanElements = VansFiltered?.map((van) => (
     <div key={van.id} className='text-black'>
       <Link to={van.id} state={
         { 
