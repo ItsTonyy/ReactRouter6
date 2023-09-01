@@ -38,19 +38,20 @@ import HostVansDetails from "./pages/host/HostVans/HostVansDetails"
 import HostVansPhotos from "./pages/host/HostVans/HostVansPhotos"
 import HostVansPricing from "./pages/host/HostVans/HostVansPricing"
 
+// login form
+import Login from "./pages/Login"
+
 
 function App() {
   const router = createBrowserRouter(
     createRoutesFromElements(
-      <Route element={<PageLayout />}>
+      <Route element={<PageLayout />} errorElement={<ErrorPageTwo />} >
         <Route path='/' element={<Home />} />
         <Route path='About' element={<About />} />
-
         <Route 
         path='Vans' 
         element={<Vans />}
         loader={vansLoader} 
-        errorElement={<ErrorPageTwo />} 
         />
         <Route path='Vans/:id' element={<VanDetail />} />
 
@@ -65,6 +66,8 @@ function App() {
             <Route path='photos' element={<HostVansPhotos />} />
           </Route>
         </Route>
+
+        <Route path='/login' element={ <Login/> }/>
         <Route path='*' element={<ErrorPage />} />
       </Route>
     )

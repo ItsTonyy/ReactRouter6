@@ -1,5 +1,6 @@
 import { Outlet } from 'react-router-dom'
 import { NavLink } from 'react-router-dom'
+import { UserCircle2 } from "lucide-react"
 
 export default function PageLayout() {
 	return (
@@ -8,31 +9,38 @@ export default function PageLayout() {
 				<div>
 					<h1 className='text-3xl font-black'>#VANLIFE</h1>
 				</div>
-				<div className='text-xl font-medium text-zinc-950/50'>
+				<div className='text-xl font-medium text-zinc-950/50 flex flex-row items-center'>
 					<NavLink
 						to='/'
-						className='mr-10 [&.active]:text-black'
+						className='mr-7 [&.active]:text-black'
 					>
 						Home
 					</NavLink>
 					<NavLink
 						to='/About'
-						className='mr-10 [&.active]:text-black'
+						className='mr-7 [&.active]:text-black'
 					>
 						About
 					</NavLink>
 					<NavLink
 						to='/Vans'
-						className='mr-10 [&.active]:text-black'
+						className='mr-7 [&.active]:text-black'
 					>
 						Vans
 					</NavLink>
 					<NavLink
 						to='/Host'
-						className='mr-10 [&.active]:text-black'
+						className='pr-7 [&.active]:text-black'
 					>
 						Host
 					</NavLink>
+					<NavLink
+					to='/Login'
+					className='[&.active]:text-black'
+					>
+						<UserCircle2 size={24}/>
+					</NavLink>
+					
 				</div>
 			</header>
 
