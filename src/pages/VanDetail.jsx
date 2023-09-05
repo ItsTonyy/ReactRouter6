@@ -1,24 +1,28 @@
 import { ArrowLeft } from "lucide-react"
-import { useEffect, useState } from "react"
-import { useParams, Link, useLocation } from "react-router-dom"
+import { Link, useLocation, useLoaderData } from "react-router-dom"
+import getVans  from "../GetVans"
+
+export function loader({ params }) {
+  return getVans(params.id)
+}
 
 export default function VanDetail() {
-  const params = useParams()
-  const [van, setVan] = useState(null)
+  /* const [van, setVan] = useState(null) */
+  const van = useLoaderData()
+  console.log(van)
 
   const location = useLocation()
-  const locationStateSearch = location.state?.search || ""
-	const locationStateType = location.state?.type || "all"
-	console.log(location)
+  const locationStateSearch = location.state?.search || "";
+	const locationStateType = location.state?.type || "all";
 
-  useEffect(() => {
+ /*  useEffect(() => {
     const fetchId = async () => {
       const response = await fetch(`/api/vans/${params.id}`)
       const data = await response.json()
       setVan(data.vans)
     }
     fetchId()
-  }, [params.id])
+  }, [params.id]) */
 
   return (
     <div className='w-full h-max bg-orange-50'>
@@ -31,7 +35,6 @@ export default function VanDetail() {
           </p>
         </Link>
 
-        {van ? (
           <div className='flex justify-center items-center flex-col mt-10 w-[35rem] m-auto select-none'>
             <h1 className='text-4xl font-light mb-6'>{van.name}</h1>
             <img
@@ -63,9 +66,6 @@ export default function VanDetail() {
               Rent this van
             </button>
           </div>
-        ) : (
-          <h2 className='font-medium text-2xl p-12'>Loading...</h2>
-        )}
       </div>
     </div>
   )

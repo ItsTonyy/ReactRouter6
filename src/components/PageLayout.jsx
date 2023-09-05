@@ -14,25 +14,25 @@ export default function PageLayout() {
 						to='/'
 						className='mr-7 [&.active]:text-black'
 					>
-						Home
+						<span>Home</span>
 					</NavLink>
 					<NavLink
 						to='/About'
 						className='mr-7 [&.active]:text-black'
 					>
-						About
+						<span>About</span>
 					</NavLink>
 					<NavLink
 						to='/Vans'
 						className='mr-7 [&.active]:text-black'
 					>
-						Vans
+						<span>Vans</span>
 					</NavLink>
 					<NavLink
 						to='/Host'
 						className='pr-7 [&.active]:text-black'
 					>
-						Host
+						<span>Host</span>
 					</NavLink>
 					<NavLink
 					to='/Login'
