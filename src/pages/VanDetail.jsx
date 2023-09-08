@@ -7,22 +7,11 @@ export function loader({ params }) {
 }
 
 export default function VanDetail() {
-  /* const [van, setVan] = useState(null) */
   const van = useLoaderData()
-  console.log(van)
 
   const location = useLocation()
   const locationStateSearch = location.state?.search || "";
 	const locationStateType = location.state?.type || "all";
-
- /*  useEffect(() => {
-    const fetchId = async () => {
-      const response = await fetch(`/api/vans/${params.id}`)
-      const data = await response.json()
-      setVan(data.vans)
-    }
-    fetchId()
-  }, [params.id]) */
 
   return (
     <div className='w-full h-max bg-orange-50'>

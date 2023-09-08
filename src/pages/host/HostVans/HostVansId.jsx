@@ -1,20 +1,27 @@
 import { useState, useEffect } from "react"
-import { useParams, Outlet } from "react-router-dom"
-import { NavLink, Link } from "react-router-dom"
+import { NavLink, Link, Outlet, useLoaderData } from "react-router-dom"
 import { ArrowLeft } from "lucide-react"
+import getHostVans from '../../../GetVans'
+import AuthRequired from "../../../Security/AuthRequired"
+
+export async function loader({ params }) {
+  await AuthRequired()
+  return getHostVans(params.id)
+}
 
 export default function HostVansId() {
-  const [currentVan, setCurrentVan] = useState(null)
-  const { id } = useParams()
+  /* const [currentVan, setCurrentVan] = useState(null) */
+  const currentVan = useLoaderData()
+  console.log(currentVan.id)
 
-  useEffect(() => {
+  /* useEffect(() => {
     const vansFetch = async () => {
       const response = await fetch(`/api/host/vans/${id}`)
       const data = await response.json()
       setCurrentVan(data.vans)
     }
     vansFetch()
-  }, [id])
+  }, [id]) */
 
   return (
     <div className='w-full h-full pb-3 bg-orange-50'>

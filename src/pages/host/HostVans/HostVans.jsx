@@ -1,18 +1,26 @@
-import { useEffect } from "react"
-import { useState } from "react"
-import { Link } from "react-router-dom"
+import { Link, useLoaderData } from "react-router-dom"
+import getHostVans from '../../../GetVans'
+import AuthRequired from "../../../Security/AuthRequired"
+
+export async function loader({ params }) {
+  await AuthRequired()
+  return getHostVans(params.id)
+}
 
 export default function HostVans() {
-  const [hostVans, setHostVans] = useState([])
+  /* const [hostVans, setHostVans] = useState([]) */
+  const hostVans = useLoaderData()
+  console.log(hostVans)
+  
 
-  useEffect(() => {
+  /* useEffect(() => {
     const hostVansFetch = async () => {
       const response = await fetch("/api/host/vans")
       const data = await response.json()
       setHostVans(data.vans)
     }
     hostVansFetch()
-  })
+  }) */
 
   const hostVansUi = hostVans.map((van) => (
     <Link to={van.id} key={van.id}>
@@ -28,17 +36,16 @@ export default function HostVans() {
             <h3 className='text-xl font-light mb-1'>{van.name}</h3>
             <p className="font-bold">{van.price}/day</p>
           </div>
-          
         </div>
       </div>
     </Link>
-  ))
+))
 
   return (
     <div className='pl-14 pt-2 bg-orange-100 h-full'>
       <section>
         <h1 className='text-3xl font-bold'>Your Listed Vans</h1>
-        {hostVans.length > 0 ? hostVansUi : <div className="font-medium text-2xl py-12">Loading...</div>}
+        {hostVansUi}
       </section>
     </div>
   )
