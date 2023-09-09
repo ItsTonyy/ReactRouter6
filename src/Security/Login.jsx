@@ -1,7 +1,14 @@
 import { useState } from "react"
+import { useLoaderData } from "react-router-dom"
+
+
+export function authLoader({ request }) {
+  return new URL(request.url).searchParams.get('message')
+}
 
 export default function Login() {
   const [loginFormData, setLoginFormData] = useState({email: "", password: ""})
+  const loaderData = useLoaderData()
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -19,9 +26,11 @@ export default function Login() {
   return (
     <div className='h-max w-full bg-orange-100 flex justify-center items-center '>
       <div
-        className='w-5/12 m-20 py-36 bg-orange-300/90 border-2 border-black shadow-2xl
+        className='w-5/12 m-16 py-36 bg-orange-300/90 border-2 border-black shadow-2xl
        flex items-center flex-col rounded-xl'
       >
+        {loaderData && <h2 className="p-3 font-medium bg-red-500 rounded-xl mb-4">{loaderData}</h2>}
+
         <h1 className='text-4xl font-semibold pb-12 top-1'>
           Sign in to your account
         </h1>
