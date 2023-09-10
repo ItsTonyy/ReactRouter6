@@ -10,14 +10,20 @@ export function authLoader({ request }) {
 export default function Login() {
   const [loginFormData, setLoginFormData] = useState({email: "", password: ""})
   const [status, setStatus] = useState('idle')
+  const [error, setError] = useState(null)
   const loaderData = useLoaderData()
 
   const handleSubmit = (e) => {
     e.preventDefault()
+
     setStatus('submitting')
+    setError(null)
     loginUser(loginFormData)
     .then(data => console.log(data))
-    .catch()
+    .catch((err) => {
+      console.log(err)
+      setError(err)
+    })
     .finally(() => setStatus('idle'))
   }
 
@@ -36,6 +42,7 @@ export default function Login() {
        flex items-center flex-col rounded-xl'
       >
         {loaderData && <h2 className="p-3 font-medium bg-red-500 rounded-xl mb-4">{loaderData}</h2>}
+        {error && <h2 className="p-3 font-medium bg-red-500 rounded-xl mb-4">{error.message}</h2>}
 
         <h1 className='text-4xl font-semibold pb-12 top-1'>
           Sign in to your account
@@ -62,8 +69,9 @@ export default function Login() {
           </div>
 
           <button 
-          disabled={status === 'submitting' || !loginFormData.email || !loginFormData.password}
-          className='w-96 bg-black text-white mt-12 py-2 rounded-lg disabled:bg-zinc-900/50'>
+          disabled={status === 'submitting' || !loginFormData.password || !loginFormData.email}
+          className={`w-96 ${error? 'bg-red-600' : 'bg-black'} text-white mt-12 py-2 
+          rounded-lg disabled:bg-zinc-900/50`}> 
             {status === 'idle' ? 'Log in' : 'submitting...'}
           </button>
         </form>
