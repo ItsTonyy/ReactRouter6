@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { useLoaderData } from "react-router-dom"
+import { loginUser } from "../GetVans"
 
 
 export function authLoader({ request }) {
@@ -8,11 +9,16 @@ export function authLoader({ request }) {
 
 export default function Login() {
   const [loginFormData, setLoginFormData] = useState({email: "", password: ""})
+  const [status, setStatus] = useState('idle')
   const loaderData = useLoaderData()
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    console.log(loginFormData)
+    setStatus('submitting')
+    loginUser(loginFormData)
+    .then(data => console.log(data))
+    .catch()
+    .finally(() => setStatus('idle'))
   }
 
   const handleChange = (e) => {
@@ -55,8 +61,10 @@ export default function Login() {
             />
           </div>
 
-          <button className='w-96 bg-black text-white mt-12 py-2 rounded-lg'>
-            Sign In
+          <button 
+          disabled={status === 'submitting' || !loginFormData.email || !loginFormData.password}
+          className='w-96 bg-black text-white mt-12 py-2 rounded-lg disabled:bg-zinc-900/50'>
+            {status === 'idle' ? 'Log in' : 'submitting...'}
           </button>
         </form>
 
