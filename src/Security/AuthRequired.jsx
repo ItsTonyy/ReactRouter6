@@ -1,6 +1,5 @@
 import { redirect } from "react-router-dom"
 
-
 export default async function AuthRequired() {
   const isLoggedIn = false
 

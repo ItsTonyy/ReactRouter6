@@ -38,7 +38,7 @@ import HostVansPhotos from "./pages/host/HostVans/HostVansPhotos"
 import HostVansPricing from "./pages/host/HostVans/HostVansPricing"
 
 // login form and its loader
-import Login, {authLoader} from "./Security/Login"
+import Login, { authLoader, action as loginAction } from "./Security/Login"
 
 //Auth Checking
 import AuthRequired from "./Security/AuthRequired"
@@ -49,14 +49,13 @@ function App() {
       <Route element={<PageLayout />} errorElement={<ErrorPageTwo />}>
         <Route path='/' element={<Home />} />
         <Route path='About' element={<About />} />
-        <Route path='/login' element={<Login />} loader={authLoader} />
+        <Route path='/login' element={<Login />} loader={authLoader} action={loginAction} />
         <Route path='Vans' element={<Vans />} loader={vansLoader} />
         <Route path='Vans/:id' element={<VanDetail />} loader={vansDetailLoader} />
 
           <Route
             path='host'
             element={<HostLayout />}
-            
           >
             <Route
               index

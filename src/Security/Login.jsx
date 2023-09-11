@@ -1,10 +1,14 @@
 import { useState } from "react"
-import { useLoaderData } from "react-router-dom"
+import { useLoaderData, useNavigate, Form } from "react-router-dom"
 import { loginUser } from "../GetVans"
-
 
 export function authLoader({ request }) {
   return new URL(request.url).searchParams.get('message')
+}
+
+export async function action() {
+  console.log('action function')
+  return null
 }
 
 export default function Login() {
@@ -12,6 +16,7 @@ export default function Login() {
   const [status, setStatus] = useState('idle')
   const [error, setError] = useState(null)
   const loaderData = useLoaderData()
+  const navigate = useNavigate()
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -19,12 +24,12 @@ export default function Login() {
     setStatus('submitting')
     setError(null)
     loginUser(loginFormData)
-    .then(data => console.log(data))
-    .catch((err) => {
-      console.log(err)
-      setError(err)
-    })
-    .finally(() => setStatus('idle'))
+      .then(navigate('/host'))
+      .catch((err) => {
+        console.log(err)
+        setError(err)
+      })
+      .finally(() => setStatus('idle'))
   }
 
   const handleChange = (e) => {
@@ -48,7 +53,7 @@ export default function Login() {
           Sign in to your account
         </h1>
 
-        <form onSubmit={handleSubmit}>
+        <Form method="post">
           <div className='flex flex-col'>
             <input
               type='email'
@@ -69,12 +74,12 @@ export default function Login() {
           </div>
 
           <button 
-          disabled={status === 'submitting' || !loginFormData.password || !loginFormData.email}
+          disabled={status === 'submitting'}
           className={`w-96 ${error? 'bg-red-600' : 'bg-black'} text-white mt-12 py-2 
           rounded-lg disabled:bg-zinc-900/50`}> 
             {status === 'idle' ? 'Log in' : 'submitting...'}
           </button>
-        </form>
+        </Form>
 
         <div className='flex flex-row mt-12'>
           <h3 className='text-sm font-semibold'>Don&apos;t have an account?</h3>
