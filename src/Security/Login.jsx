@@ -6,19 +6,28 @@ export function authLoader({ request }) {
   return new URL(request.url).searchParams.get('message')
 }
 
-export async function action() {
-  console.log('action function')
+export async function action({ request }) {
+  const formData = await request.formData()
+  const email = formData.get('email')
+  const password = formData.get('password')
+  try {
+    const data = await loginUser({email, password})
+    console.log(data)
+    localStorage.setItem('loggedIn', true)
+  } catch (error) {
+    console.log(error)
+  }
+
   return null
 }
 
 export default function Login() {
-  const [loginFormData, setLoginFormData] = useState({email: "", password: ""})
   const [status, setStatus] = useState('idle')
   const [error, setError] = useState(null)
   const loaderData = useLoaderData()
   const navigate = useNavigate()
 
-  const handleSubmit = (e) => {
+  /*  const handleSubmit = (e) => {
     e.preventDefault()
 
     setStatus('submitting')
@@ -30,15 +39,7 @@ export default function Login() {
         setError(err)
       })
       .finally(() => setStatus('idle'))
-  }
-
-  const handleChange = (e) => {
-    const {name, value} = e.target
-    setLoginFormData(prev => ({
-      ...prev,
-      [name]: value
-    })) 
-  }
+  }  */
 
   return (
     <div className='h-max w-full bg-orange-100 flex justify-center items-center '>
@@ -59,16 +60,12 @@ export default function Login() {
               type='email'
               name='email'
               placeholder='Email Adress'
-              value={loginFormData.email}
-              onChange={handleChange}
               className='w-96 h-14 p-2 rounded-t-md border-black/50 border-x border-t border-b'
             />
             <input
               type='password'
               name='password'
               placeholder='Password'
-              value={loginFormData.password}
-              onChange={handleChange}
               className='w-96 h-14 p-2 rounded-b-md border-black/50 border-x border-b'
             />
           </div>
