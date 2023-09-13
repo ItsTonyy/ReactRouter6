@@ -1,31 +1,32 @@
 import { useState } from "react"
-import { useLoaderData, useNavigate, Form } from "react-router-dom"
+import { useLoaderData, Form } from "react-router-dom"
 import { loginUser } from "../GetVans"
+import { redirect } from "react-router-dom"
 
 export function authLoader({ request }) {
-  return new URL(request.url).searchParams.get('message')
+  return new URL(request.url).searchParams.get("message")
 }
 
 export async function action({ request }) {
   const formData = await request.formData()
-  const email = formData.get('email')
-  const password = formData.get('password')
-  try {
-    const data = await loginUser({email, password})
-    console.log(data)
-    localStorage.setItem('loggedIn', true)
-  } catch (error) {
-    console.log(error)
-  }
+  const email = formData.get("email")
+  const password = formData.get("password")
 
-  return null
+  const data = await loginUser({ email, password })
+  console.log(data)
+  localStorage.setItem('loggedIn', true)
+
+  // alternative to directly returning the redirect propetie due to mirageJs errors
+  const response = redirect('/host')
+  response.body = true 
+
+  return response
 }
 
 export default function Login() {
-  const [status, setStatus] = useState('idle')
+  const [status, setStatus] = useState("idle")
   const [error, setError] = useState(null)
   const loaderData = useLoaderData()
-  const navigate = useNavigate()
 
   /*  const handleSubmit = (e) => {
     e.preventDefault()
@@ -44,17 +45,25 @@ export default function Login() {
   return (
     <div className='h-max w-full bg-orange-100 flex justify-center items-center '>
       <div
-        className='w-5/12 m-16 py-36 bg-orange-300/90 border-2 border-black shadow-2xl
+        className='w-5/12 m-16 py-40 bg-orange-300/90 border-2 border-black shadow-2xl
        flex items-center flex-col rounded-xl'
       >
-        {loaderData && <h2 className="p-3 font-medium bg-red-500 rounded-xl mb-4">{loaderData}</h2>}
-        {error && <h2 className="p-3 font-medium bg-red-500 rounded-xl mb-4">{error.message}</h2>}
+        {loaderData && (
+          <h2 className='p-3 font-medium bg-red-500 rounded-xl mb-4'>
+            {loaderData}
+          </h2>
+        )}
+        {error && (
+          <h2 className='p-3 font-medium bg-red-500 rounded-xl mb-4'>
+            {error.message}
+          </h2>
+        )}
 
         <h1 className='text-4xl font-semibold pb-12 top-1'>
           Sign in to your account
         </h1>
 
-        <Form method="post">
+        <Form method='post' replace>
           <div className='flex flex-col'>
             <input
               type='email'
@@ -70,11 +79,14 @@ export default function Login() {
             />
           </div>
 
-          <button 
-          disabled={status === 'submitting'}
-          className={`w-96 ${error? 'bg-red-600' : 'bg-black'} text-white mt-12 py-2 
-          rounded-lg disabled:bg-zinc-900/50`}> 
-            {status === 'idle' ? 'Log in' : 'submitting...'}
+          <button
+            disabled={status === "submitting"}
+            className={`w-96 ${
+              error ? "bg-red-600" : "bg-black"
+            } text-white mt-12 py-2 
+          rounded-lg disabled:bg-zinc-900/50 hover:bg-zinc-800`}
+          >
+            {status === "idle" ? "Log in" : "submitting..."}
           </button>
         </Form>
 
