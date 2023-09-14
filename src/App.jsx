@@ -43,6 +43,8 @@ import Login, { authLoader, action as loginAction } from "./Security/Login"
 //Auth Checking
 import AuthRequired from "./Security/AuthRequired"
 
+localStorage.removeItem('loggedIn')
+
 function App() {
   const router = createBrowserRouter(
     createRoutesFromElements(

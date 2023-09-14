@@ -1,7 +1,6 @@
 import { useState } from "react"
-import { useLoaderData, Form } from "react-router-dom"
+import { useLoaderData, Form, redirect, useActionData, useNavigation } from "react-router-dom"
 import { loginUser } from "../GetVans"
-import { redirect } from "react-router-dom"
 
 export function authLoader({ request }) {
   return new URL(request.url).searchParams.get("message")
@@ -12,35 +11,25 @@ export async function action({ request }) {
   const email = formData.get("email")
   const password = formData.get("password")
 
-  const data = await loginUser({ email, password })
-  console.log(data)
-  localStorage.setItem('loggedIn', true)
+  try {
+    const data = await loginUser({ email, password })
 
-  // alternative to directly returning the redirect propetie due to mirageJs errors
-  const response = redirect('/host')
-  response.body = true 
+    localStorage.setItem('loggedIn', true)
+    // alternative to directly returning the redirect propetie due to mirageJs errors
+    const response = redirect('/host')
+    response.body = true 
+    return response
 
-  return response
+  } catch (err) {
+    return err.message
+  }
 }
 
 export default function Login() {
-  const [status, setStatus] = useState("idle")
-  const [error, setError] = useState(null)
+  //const [error, setError] = useState(null)
   const loaderData = useLoaderData()
-
-  /*  const handleSubmit = (e) => {
-    e.preventDefault()
-
-    setStatus('submitting')
-    setError(null)
-    loginUser(loginFormData)
-      .then(navigate('/host'))
-      .catch((err) => {
-        console.log(err)
-        setError(err)
-      })
-      .finally(() => setStatus('idle'))
-  }  */
+  const actionData = useActionData()
+  const navigation = useNavigation()
 
   return (
     <div className='h-max w-full bg-orange-100 flex justify-center items-center '>
@@ -53,11 +42,12 @@ export default function Login() {
             {loaderData}
           </h2>
         )}
-        {error && (
+        {actionData && (
           <h2 className='p-3 font-medium bg-red-500 rounded-xl mb-4'>
-            {error.message}
+            {actionData}
           </h2>
         )}
+
 
         <h1 className='text-4xl font-semibold pb-12 top-1'>
           Sign in to your account
@@ -80,13 +70,12 @@ export default function Login() {
           </div>
 
           <button
-            disabled={status === "submitting"}
-            className={`w-96 ${
-              error ? "bg-red-600" : "bg-black"
-            } text-white mt-12 py-2 
-          rounded-lg disabled:bg-zinc-900/50 hover:bg-zinc-800`}
+            disabled={navigation.state === "submitting"}
+            className={`w-96  ${actionData ? "bg-red-600 hover:bg-red-500" : "bg-black"}
+            text-white mt-12 py-2 
+            rounded-lg disabled:bg-zinc-900/50 hover:bg-zinc-800`}
           >
-            {status === "idle" ? "Log in" : "submitting..."}
+            {navigation.state === "idle" ? "Log in" : "submitting..."}
           </button>
         </Form>
 
