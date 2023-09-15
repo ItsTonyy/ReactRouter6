@@ -34,16 +34,16 @@ export default function Login() {
   return (
     <div className='h-max w-full bg-orange-100 flex justify-center items-center '>
       <div
-        className='w-5/12 m-16 py-40 bg-orange-300/90 border-2 border-black shadow-2xl
+        className='w-5/12 m-16 py-36 bg-orange-300/90 border-2 border-black shadow-2xl
        flex items-center flex-col rounded-xl'
       >
         {loaderData && (
-          <h2 className='p-3 font-medium bg-red-500 rounded-xl mb-4'>
+          <h2 className='p-3 font-medium bg-red-200/70 text-red-600 rounded-lg mb-4'>
             {loaderData}
           </h2>
         )}
         {actionData && (
-          <h2 className='p-3 font-medium bg-red-500 rounded-xl mb-4'>
+          <h2 className='p-3 font-medium bg-red-200/70 text-red-600 rounded-lg mb-4'>
             {actionData}
           </h2>
         )}
