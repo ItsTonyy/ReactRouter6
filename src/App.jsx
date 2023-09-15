@@ -62,17 +62,17 @@ function App() {
             <Route
               index
               element={<Dashboard />}
-              loader={async () => await AuthRequired()}
+              loader={async ({request}) => await AuthRequired(request)}
             />
             <Route
               path='income'
               element={<Income />}
-              loader={async () => await AuthRequired()}
+              loader={async ({request}) => await AuthRequired(request)}
             />
             <Route
               path='reviews'
               element={<Reviews />}
-              loader={async () => await AuthRequired()}
+              loader={async ({request}) => await AuthRequired(request)}
             />
             <Route
               path='/host/vans'

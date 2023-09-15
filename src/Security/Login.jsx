@@ -1,4 +1,3 @@
-import { useState } from "react"
 import { useLoaderData, Form, redirect, useActionData, useNavigation } from "react-router-dom"
 import { loginUser } from "../GetVans"
 
@@ -11,12 +10,14 @@ export async function action({ request }) {
   const email = formData.get("email")
   const password = formData.get("password")
 
+
   try {
-    const data = await loginUser({ email, password })
+    await loginUser({ email, password })
 
     localStorage.setItem('loggedIn', true)
     // alternative to directly returning the redirect propetie due to mirageJs errors
-    const response = redirect('/host')
+    const gettingRedirectParams = new URL(request.url).searchParams.get('redirectTo') || '/host'
+    const response = redirect(gettingRedirectParams)
     response.body = true 
     return response
 
@@ -26,7 +27,6 @@ export async function action({ request }) {
 }
 
 export default function Login() {
-  //const [error, setError] = useState(null)
   const loaderData = useLoaderData()
   const actionData = useActionData()
   const navigation = useNavigation()
@@ -47,8 +47,6 @@ export default function Login() {
             {actionData}
           </h2>
         )}
-
-
         <h1 className='text-4xl font-semibold pb-12 top-1'>
           Sign in to your account
         </h1>

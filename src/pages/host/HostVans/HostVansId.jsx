@@ -4,8 +4,8 @@ import { ArrowLeft } from "lucide-react"
 import getHostVans from '../../../GetVans'
 import AuthRequired from "../../../Security/AuthRequired"
 
-export async function loader({ params }) {
-  await AuthRequired()
+export async function loader({ params, request }) {
+  await AuthRequired(request)
   return getHostVans(params.id)
 }
 
