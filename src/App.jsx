@@ -87,23 +87,17 @@ function App() {
               <Route
                 index
                 element={<HostVansDetails />}
-                loader={async () => {
-                  return null
-                }}
+                loader={async ({request}) => await AuthRequired(request)}
               />
               <Route
                 path='pricing'
                 element={<HostVansPricing />}
-                loader={async () => {
-                  return null
-                }}
+                loader={async ({request}) => await AuthRequired(request)}
               />
               <Route
                 path='photos'
                 element={<HostVansPhotos />}
-                loader={async () => {
-                  return null
-                }}
+                loader={async ({request}) => await AuthRequired(request)}
               />
             </Route>
           </Route>
