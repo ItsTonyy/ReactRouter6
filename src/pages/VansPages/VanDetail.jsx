@@ -1,6 +1,6 @@
 import { ArrowLeft } from "lucide-react"
 import { Link, useLocation, useLoaderData } from "react-router-dom"
-import getVans  from "../GetVans"
+import getVans  from "../../GetVans"
 
 export function loader({ params }) {
   return getVans(params.id)

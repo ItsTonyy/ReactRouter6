@@ -21,8 +21,8 @@ import About from "./pages/About"
 import Home from "./pages/Home"
 
 // vans components
-import Vans, { loader as vansLoader } from "./pages/Vans"
-import VanDetail, {loader as vansDetailLoader} from "./pages/VanDetail"
+import Vans, { loader as vansLoader } from "./pages/VansPages/Vans"
+import VanDetail, {loader as vansDetailLoader} from "./pages/VansPages/VanDetail"
 
 // mid level of host
 import Dashboard from "./pages/host/Dashboard"

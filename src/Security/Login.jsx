@@ -13,8 +13,8 @@ export async function action({ request }) {
 
   try {
     await loginUser({ email, password })
-
     localStorage.setItem('loggedIn', true)
+
     // alternative to directly returning the redirect propetie due to mirageJs errors
     const gettingRedirectParams = new URL(request.url).searchParams.get('redirectTo') || '/host'
     const response = redirect(gettingRedirectParams)
