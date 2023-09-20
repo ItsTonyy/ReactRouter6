@@ -18,13 +18,14 @@ export default function Vans() {
   const [searchParams, setSearchParams] = useSearchParams()
   const typeFilter = searchParams.get("type")
 
-  function renderVanElements(vans) {
+  function renderVanElement(vans) {
     const VansFiltered = typeFilter
       ? vans.filter((van) => van.type === typeFilter)
       : vans
 
     const vanElements = VansFiltered?.map((van) => (
       <div key={van.id} className='text-black'>
+        {console.log(van)}
         <Link
           to={van.id}
           state={{
@@ -61,6 +62,7 @@ export default function Vans() {
         </i>
       </div>
     ))
+
     return (
       <>
         <div className='mb-10'>
@@ -115,7 +117,9 @@ export default function Vans() {
             Explore Our Van Options
           </h1>
           <Suspense fallback={<h2 className="text-2xl font-semibold mb-[41rem]">Loading...</h2>}>
-            <Await resolve={loaderData.vansData}>{renderVanElements}</Await>
+            <Await resolve={loaderData.vansData}>
+              {renderVanElement}
+            </Await>
           </Suspense>
         </div>
       </div>
