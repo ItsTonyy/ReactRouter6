@@ -43,7 +43,8 @@ import Login, { authLoader, action as loginAction } from "./Security/Login"
 //Auth Checking
 import AuthRequired from "./Security/AuthRequired"
 
-localStorage.removeItem('loggedIn')
+// log out automatically when page is restarted: localStorage.removeItem('loggedIn')
+
 
 function App() {
   const router = createBrowserRouter(
@@ -102,7 +103,7 @@ function App() {
             </Route>
           </Route>
 
-        <Route path='*' element={<ErrorPage />} />
+        <Route path='*' element={<ErrorPage/>} />
       </Route>
     )
   )
