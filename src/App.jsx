@@ -45,7 +45,6 @@ import AuthRequired from "./Security/AuthRequired"
 
 // log out automatically when page is restarted: localStorage.removeItem('loggedIn')
 
-
 function App() {
   const router = createBrowserRouter(
     createRoutesFromElements(
@@ -107,7 +106,6 @@ function App() {
       </Route>
     )
   )
-
   return <RouterProvider router={router} />
 }
 
