@@ -1,26 +1,44 @@
-import { useLoaderData, Form, redirect, useActionData, useNavigation } from "react-router-dom"
+import {
+  useLoaderData,
+  Form,
+  redirect,
+  useActionData,
+  useNavigation,
+} from "react-router-dom"
 import { loginUser } from "../GetVans"
 
-export function authLoader({ request }) {
+interface AuthLoaderProps {
+  request: {
+    url: string
+  }
+}
+
+interface ActionProps {
+  request: {
+    formData: () => Promise<FormData>
+    url: string
+  }
+}
+
+export function authLoader({ request }: AuthLoaderProps) {
   return new URL(request.url).searchParams.get("message")
 }
 
-export async function action({ request }) {
+export async function action({ request }: ActionProps) {
   const formData = await request.formData()
   const email = formData.get("email")
   const password = formData.get("password")
 
-
   try {
     await loginUser({ email, password })
-    localStorage.setItem('loggedIn', true)
+    localStorage.setItem("loggedIn", true)
 
     // alternative to directly returning the redirect propetie due to mirageJs errors
-    const gettingRedirectParams = new URL(request.url).searchParams.get('redirectTo') || '/host'
+    const gettingRedirectParams =
+      new URL(request.url).searchParams.get("redirectTo") || "/host"
     const response = redirect(gettingRedirectParams)
-    response.body = true 
+    response.body = true
     return response
-
   } catch (err) {
     return err.message
   }
@@ -69,9 +87,8 @@ export default function Login() {
 
           <button
             disabled={navigation.state === "submitting"}
-            className={`w-96  ${actionData ? "bg-red-600 hover:bg-red-500" : "bg-black"}
-            text-white mt-12 py-2 
-            rounded-lg disabled:bg-zinc-900/50 hover:bg-zinc-800`}
+            className={`w-96 ${actionData ? "bg-red-600 hover:bg-red-500" : "bg-black"}
+            text-white mt-12 py-2 rounded-lg disabled:bg-zinc-900/50 hover:bg-zinc-800`}
           >
             {navigation.state === "idle" ? "Log in" : "submitting..."}
           </button>
